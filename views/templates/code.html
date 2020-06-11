@@ -1,0 +1,183 @@
+
+
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/style.css">
+
+<h1>{{ .shikiho.Code }} {{ .shikiho.CompName }}</h1>
+<table border="1">
+    <tbody>
+        <tr>
+            <th>決算</th>
+            <th>設立</th>
+            <th>上場</th>
+            <th>URL</th>
+            <th>本社</th>
+            <th>業種</th>
+            <th>比較会社</th>
+            <th>従業員</th>
+        </tr>
+        <tr>
+            <td>{{ .shikiho.Settlement }}</td>
+            <td>{{ .shikiho.Establishment }}</td>
+            <td>{{ .shikiho.StockListing }}</td>
+            <td>{{ .shikiho.URL }}</td>
+            <td>{{ .shikiho.HeadOffice }}</td>
+            <td>{{ .shikiho.TypeOfBusiness }}</td>
+            <td>{{ .shikiho.CompareCompany }}</td>
+            <td>{{ .shikiho.NumOfEmployee }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<table border="1">
+    <tbody>
+        <tr>
+            <th>連結</th>
+            <th>連結事業</th>
+        </tr>
+        <tr>
+            <td>{{ .shikiho.Consolidated }}</th>
+            <td>{{ .shikiho.ConsolidatedBusiness }}</th>
+        </tr>
+    </tbody>
+</table>
+
+<table border="1">
+    <tbody>
+        <tr>
+            <th>仕入先</th>
+            <th>販売先</th>
+            <th>証券</th>
+            <th>銀行</th>
+        </tr>
+        <tr>
+            <td>{{ .shikiho.Supplier }}</th>
+            <td>{{ .shikiho.SalesContact }}</th>
+            <td>{{ .shikiho.Certificate }}</th>
+            <td>{{ .shikiho.Bank }}</th>
+        </tr>
+    </tbody>
+</table>
+
+<h2>コメント</h2>
+<h3>・特徴</h3>
+{{ range .shikihos }}
+<div class="row">
+    <div class="col-1 ">
+        <span class="badge badge-dark">
+            {{ .Year }}年{{ .Quarter | GetQuarterFromNum}}
+        </span>
+    </div>
+    <div class="col-10">{{ .Feature }}</div>
+</div>
+{{ end }}
+<h3>・トピック / 次期展望</h3>
+{{ range .shikihos }}
+<div class="row">
+    <div class="col-1 ">
+        <span class="badge badge-dark">
+            {{ .Year }}年{{ .Quarter | GetQuarterFromNum}}
+        </span>
+    </div>
+    <div class="col-5">{{ .Topic }}</div>
+    <div class="col-5">{{ .Outlook }}</div>
+</div>
+{{ end }}
+
+<div class="row">
+    <div class="col-4">
+        <h2>業績</h2>
+        <table class="table-striped">
+            <tbody>
+                <tr>
+                    <th></th>
+                    <th>売上高</th>
+                    <th>営業利益</th>
+                    <th>税前利益</th>
+                    <th>純利益</th>
+                    <th>一株利益</th>
+                    <th>一株配当</th>
+                </tr>
+                {{ range .shikihos }}
+                <tr>
+                    <td><span class="badge badge-dark">
+                            {{ .Year }}年{{ .Quarter | GetQuarterFromNum}}予想
+                        </span></td>
+                    <td align="right">{{ .NextSales }}</td>
+                    <td align="right">{{ .NextOperationgIncome }}</td>
+                    <td align="right">{{ .NextOrdinaryIncome }}</td>
+                    <td align="right">{{ .NextNetIncome }}</td>
+                    <td align="right">{{ .NextNetIncomePerShare }}</td>
+                    <td align="right">{{ .NextDividend }}</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-dark">
+                            {{ .Year }}年{{ .Quarter | GetQuarterFromNum}}実績
+                        </span></td>
+                    <td align="right">{{ .PrevSales }}</td>
+                    <td align="right">{{ .PrevOperatingIncome }}</td>
+                    <td align="right">{{ .PrevOrdinaryIncome }}</td>
+                    <td align="right">{{ .PrevNetIncome }}</td>
+                    <td align="right">{{ .PrevNetIncomePerShare }}</td>
+                    <td align="right">{{ .PrevDividend }}</td>
+                </tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-4">
+        <h2>キャッシュフロー</h2>
+        <table class="table-striped">
+            <tbody>
+                <tr>
+                    <th></th>
+                    <th>営業CF</th>
+                    <th>投資CF</th>
+                    <th>財務CF</th>
+                    <th>現金等</th>
+                </tr>
+                {{ range .shikihos }}
+                <tr>
+                    <td><span class="badge badge-dark">
+                            {{ .Year }}年{{ .Quarter | GetQuarterFromNum}}
+                        </span></td>
+                    <td>{{ .OperationgCf }}({{ .PrevOperatingCf }})</td>
+                    <td>{{ .InvestmentCf }}({{ .PrevInvestmentCf }})</td>
+                    <td>{{ .FinancingCf }}({{ .PrevFinancingCf }})</td>
+                    <td>{{ .Cash }}({{ .PrevCash }})</td>
+                </tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-4">
+        <h2>財務状況</h2>
+        <table class="table-striped">
+            <tbody>
+                <tr>
+                    <th></th>
+                    <th>総資産</th>
+                    <th>自己資本</th>
+                    <th>自己資本比率</th>
+                    <th>資本金</th>
+                    <th>利益余剰金</th>
+                    <th>有利子負債</th>
+                </tr>
+                {{ range .shikihos }}
+                <tr>
+                    <td><span class="badge badge-dark">
+                            {{ .Year }}年{{ .Quarter | GetQuarterFromNum}}
+                        </span></td>
+                    <td>{{ .TotalAssets }}</td>
+                    <td>{{ .OwnedCapital }}</td>
+                    <td>{{ .OwnedCapitalRatio }}</td>
+                    <td>{{ .Capital }}</td>
+                    <td>{{ .RetainedEarnings }}</td>
+                    <td>{{ .InterestBearingDebt }}</td>
+                </tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>

@@ -63,16 +63,18 @@ func SearchShikihos(param url.Values) []entity.Shikiho {
 	return shikihos
 }
 
-// FindShikiho は shikihoのレコードを１件取得する
-func FindShikiho(shikihoID int) []entity.Shikiho {
-	shikiho := []entity.Shikiho{}
+// GetShikiho は shikihoの履歴をすべて取得する
+func GetShikiho(code int) []entity.Shikiho {
+	shikihos := []entity.Shikiho{}
 
 	db := open()
+	db = db.Where("code = ?", code).Order("year desc").Order("quarter desc")
 	// select
-	db.First(&shikiho, shikihoID)
+	db.Find(&shikihos)
+
 	defer db.Close()
 
-	return shikiho
+	return shikihos
 }
 
 // InsertShikiho は shikihoにレコードを追加する

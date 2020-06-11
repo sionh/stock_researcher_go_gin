@@ -103,23 +103,23 @@
                     <td><span class="badge badge-dark">
                             {{ .Year }}年{{ .Quarter | GetQuarterFromNum}}予想
                         </span></td>
-                    <td align="right">{{ .NextSales }}</td>
-                    <td align="right">{{ .NextOperationgIncome }}</td>
-                    <td align="right">{{ .NextOrdinaryIncome }}</td>
-                    <td align="right">{{ .NextNetIncome }}</td>
-                    <td align="right">{{ .NextNetIncomePerShare }}</td>
-                    <td align="right">{{ .NextDividend }}</td>
+                    <td align="right">{{ .NextSales | Comma}}</td>
+                    <td align="right">{{ .NextOperationgIncome | Comma }}</td>
+                    <td align="right">{{ .NextOrdinaryIncome | Comma }}</td>
+                    <td align="right">{{ .NextNetIncome | Comma }}</td>
+                    <td align="right">{{ .NextNetIncomePerShare | RoundFloatStrIfParsable}}</td>
+                    <td align="right">{{ .NextDividend | RoundFloatStrIfParsable }}</td>
                 </tr>
                 <tr>
                     <td><span class="badge badge-dark">
                             {{ .Year }}年{{ .Quarter | GetQuarterFromNum}}実績
                         </span></td>
-                    <td align="right">{{ .PrevSales }}</td>
-                    <td align="right">{{ .PrevOperatingIncome }}</td>
-                    <td align="right">{{ .PrevOrdinaryIncome }}</td>
-                    <td align="right">{{ .PrevNetIncome }}</td>
-                    <td align="right">{{ .PrevNetIncomePerShare }}</td>
-                    <td align="right">{{ .PrevDividend }}</td>
+                    <td align="right">{{ .PrevSales | Comma }}</td>
+                    <td align="right">{{ .PrevOperatingIncome | Comma }}</td>
+                    <td align="right">{{ .PrevOrdinaryIncome | Comma }}</td>
+                    <td align="right">{{ .PrevNetIncome | Comma }}</td>
+                    <td align="right">{{ .PrevNetIncomePerShare | RoundFloatStrIfParsable}}</td>
+                    <td align="right">{{ .PrevDividend | RoundFloatStrIfParsable}}</td>
                 </tr>
                 {{ end }}
             </tbody>
@@ -142,10 +142,10 @@
                     <td><span class="badge badge-dark">
                             {{ .Year }}年{{ .Quarter | GetQuarterFromNum}}
                         </span></td>
-                    <td>{{ .OperationgCf }}({{ .PrevOperatingCf }})</td>
-                    <td>{{ .InvestmentCf }}({{ .PrevInvestmentCf }})</td>
-                    <td>{{ .FinancingCf }}({{ .PrevFinancingCf }})</td>
-                    <td>{{ .Cash }}({{ .PrevCash }})</td>
+                    <td>{{ .OperationgCf | Comma }}({{ .PrevOperatingCf | Comma }})</td>
+                    <td>{{ .InvestmentCf | Comma }}({{ .PrevInvestmentCf | Comma }})</td>
+                    <td>{{ .FinancingCf | Comma }}({{ .PrevFinancingCf | Comma }})</td>
+                    <td>{{ .Cash | Comma }}({{ .PrevCash | Comma }})</td>
                 </tr>
                 {{ end }}
             </tbody>
@@ -170,12 +170,12 @@
                     <td><span class="badge badge-dark">
                             {{ .Year }}年{{ .Quarter | GetQuarterFromNum}}
                         </span></td>
-                    <td>{{ .TotalAssets }}</td>
-                    <td>{{ .OwnedCapital }}</td>
+                    <td>{{ .TotalAssets | Comma }}</td>
+                    <td>{{ .OwnedCapital | Comma }}</td>
                     <td>{{ .OwnedCapitalRatio }}</td>
-                    <td>{{ .Capital }}</td>
-                    <td>{{ .RetainedEarnings }}</td>
-                    <td>{{ .InterestBearingDebt }}</td>
+                    <td>{{ .Capital | Comma  }}</td>
+                    <td>{{ .RetainedEarnings | Comma }}</td>
+                    <td>{{ .InterestBearingDebt | Comma }}</td>
                 </tr>
                 {{ end }}
             </tbody>

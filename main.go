@@ -19,7 +19,9 @@ func serve() {
 	router := gin.Default()
 
 	router.SetFuncMap(template.FuncMap{
-		"GetQuarterFromNum": common.GetQuarterFromNum,
+		"GetQuarterFromNum":       common.GetQuarterFromNum,
+		"Comma":                   common.Comma,
+		"RoundFloatStrIfParsable": common.RoundFloatStrIfParsable,
 	})
 	router.Static("/static", "./views/static")
 	router.LoadHTMLGlob("views/templates/*.html")

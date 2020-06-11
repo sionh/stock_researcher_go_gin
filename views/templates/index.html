@@ -3,6 +3,8 @@
 <link rel="stylesheet" href="/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="/static/css/style.css">
 
+{{template "header"}}
+
 <div id="sidebar" class="col-2">
     <form action="shikihos" method="get">
         <div class="row">
@@ -94,3 +96,5 @@
     </table>
     <!-- {% include 'shikihos/pagination.html'%} -->
   </div>
+</div>
+{{template "footer"}}

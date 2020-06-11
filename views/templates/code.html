@@ -1,9 +1,6 @@
+{{template "header"}}
 
-
-<link rel="stylesheet" href="/static/css/bootstrap.min.css">
-<link rel="stylesheet" href="/static/css/style.css">
-
-<h1>{{ .shikiho.Code }} {{ .shikiho.CompName }}</h1>
+<h2>{{ .shikiho.Code }} {{ .shikiho.CompName }}</h2>
 <table border="1">
     <tbody>
         <tr>
@@ -181,3 +178,5 @@
             </tbody>
         </table>
     </div>
+
+    {{template "footer"}}
